@@ -4,22 +4,39 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
     <title>Document</title>
   </head>
   <body>
     <h1>Art Change UP</h1>
     <h2>현재 디폴트 방은 1번입니다</h2>
-    <button onclick="roomSend()">Submit</button>
-  </body>
-  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-  <script>
-    async function roomSend() {
-      try {
-        const {data} = await axios.post("/api/user/1");
+    <button onclick="createRoom()">createRoom</button>
+    <button onclick="joinRoom()">joinRoom</button>
+    <button onclick="leaveRoom()">leaveRoom</button>
+    <button onclick="deleteRoom()">deleteRoom</button>
+    <script>
+      const socket = io();
+      socket.on("connect", () => {
+        console.log("Connected to server");
+      });
+      //TODO: message handler가 필요함
+      socket.on("message", data => {
         console.log("data >> ", data);
-      } catch (err) {
-        console.error(err);
+      });
+     
+      async function createRoom() {
+        socket.emit("roomManage", {roomId: "1", memberId: socket.id, type: "createRoom"});
       }
-    }
-  </script>
+      async function joinRoom() {
+        socket.emit("roomManage", {roomId: "1", memberId: socket.id, type: "joinRoom"});
+      }
+      async function leaveRoom() {
+        socket.emit("roomManage", {roomId: "1", memberId: socket.id, type: "leaveRoom"});
+      }
+      async function deleteRoom() {
+        socket.emit("roomManage", {roomId: "1", memberId: socket.id, type: "deleteRoom"});
+      }
+    </script>
+  </body>
 </html>
