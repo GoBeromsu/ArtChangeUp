@@ -1,6 +1,10 @@
-import {FastifyInstance} from "fastify";
-import signal from "./signal";
+import {FastifyInstance, FastifyReply, FastifyRequest} from "fastify";
+import api from "./api";
+import handler from "./handler";
+import pages from "./pages";
 
 export default async function (fastify: FastifyInstance) {
-  fastify.register(signal, {prefix: "/signal"});
+  fastify.register(pages, {prefix: "/"});
+  fastify.register(api, {prefix: "/api"});
+  fastify.register(handler,{prefix:"/handler"})
 }
