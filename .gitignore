@@ -2,3 +2,4 @@
 node_modules
 .gitattributes
 config/URL.ts
+src/.DS_Store
