@@ -3,6 +3,6 @@ import fastify, {FastifyInstance, FastifyRequest} from "fastify";
 
 export default async function (fastify: FastifyInstance) {
   fastify.get("/", (req: FastifyRequest, reply: FastifyReply) => {
-    reply.view("views/index.ejs")
+    reply.view("/public/index.ejs")
   });
 }
