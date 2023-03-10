@@ -1,7 +1,6 @@
 # ArtChangeUp 
 
 - Project Name : Catoni
-- [Orchestrive](https://github.com/GoBeromsu/Ochestrive) 프로젝트의 Upgrade 버전입니다
 
 ### 기술 스펙
 
